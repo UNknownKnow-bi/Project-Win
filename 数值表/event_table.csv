@@ -1,0 +1,66 @@
+﻿事件类型、事件名、事件群名称、事件发生顺序、事件文本、事件有效回合数、持续回合数、玩家可以做出的选项（<=3)、选项反馈文本、选项跳转事件；,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,
+,event_id,event_type,event_name,event_group_id,event_group_name,event_sequence,event_content,event_expire,event_duration,event_trigger,event_battle,event_settle,display_card,choice,display_background
+说明,事件唯一ID，从1往下自动生成即可,事件类型，开局文本/日常事件/人物随机事件/支线剧情事件/结局,事件名,事件群id,事件群名称,事件发生顺序,事件内容（即前端出示文本）,事件多少个回合内有效,事件需要消耗多少个回合完成,事件触发的条件，包括前置事件和触发回合，json格式,事件所需检定的属性和值,事件结算奖励/惩罚，json格式,卡牌槽位配置，包括槽位数量、槽位提示文本、是否必须放置某个卡牌、槽位可上阵卡牌,玩家选项及分支事件，在不同槽位放置卡牌做出选择时后续的跳转事件；,事件背景图ID
+示例值,10000,开局文本,人物背景介绍,0,,1,"{""mian_text"":""XXXXX""},{""high_light"":""XXXX""}",999,0,{},{},{},{},{},
+,10001,开局文本,老板邀约介绍,0,,2,"{""mian_text"":""XXXXX""},{""high_light"":""XXXX""}",999,0,{},{},{},{},"{ ""default"": {
+      ""next_event"": 1
+      ""feedback_text"": ""你获得了特权卡""}
+    }",
+,10002,日常事件,茶水间的八卦,1,日常事件,1,"{""mian_text"":""XXXXX""},{""high_light"":""XXXX""}",1,1,"{""required_events"": [10000], ""time"": ""workday""}",{},"{""Coins"": 100, ""items"": [201], ""attribute_change"": {""str"": 5}}","{
+  // 是否强制要求必须放置卡牌才能推进事件
+  ""require_card"": true,
+  
+  // 卡牌槽位配置（每个槽位对应不同选项分支）
+  ""slots"": [
+    {
+      ""slot_id"": 1,                 // 槽位ID（前端绑定UI位置）
+      ""description"": {              // 槽位描述（多语言+变量）
+        ""zh"": ""左侧阵型：{card_name}将发动突袭"",
+        ""en"": ""Left Flank: {card_name} will raid""
+      },
+      ""filter_tags"": [""melee"", ""agile""], // 允许放置的卡牌类型标签
+      ""default_text"": {             // 未放置卡牌时的选项文本
+        ""zh"": ""放弃左侧阵型"",
+        ""en"": ""Abandon left flank""
+      }
+    },
+    {
+      ""slot_id"": 2,
+      ""description"": {
+        ""zh"": ""右侧阵型：{card_name}将提供支援"",
+        ""en"": ""Right Flank: {card_name} will support""
+      },
+      ""filter_tags"": [""range"", ""healer""],
+      ""default_text"": {
+        ""zh"": ""忽略右侧阵型"",
+        ""en"": ""Ignore right flank""
+      }
+    }
+  ],
+  
+  // 可选的卡牌池（ID关联卡牌表）
+  ""available_cards"": [101, 102, 203]
+}","{
+  // 分支逻辑类型：card_slot（卡牌槽位触发）
+  ""branch_type"": ""card_slot"",
+  
+  // 分支规则（key为""卡牌ID_槽位ID""）
+  ""rules"": {
+    // 卡牌101放置在槽位1 → 触发事件2002
+    ""101_1"": {
+      ""next_event"": 2002,
+      ""feedback_text"": {""zh"": ""骑士冲锋！"", ""en"": ""Knight charges!""}
+    },
+    // 卡牌203放置在槽位2 → 触发事件2003
+    ""203_2"": {
+      ""next_event"": 2003,
+      ""feedback_text"": {""zh"": ""法师吟唱咒文…"", ""en"": ""Mage chanting...""}
+    },
+    // 默认分支（未放置卡牌时）
+    ""default"": {
+      ""next_event"": 2004,
+      ""feedback_text"": {""zh"": ""阵型涣散…"", ""en"": ""Formation collapsed""}
+    }
+  }
+}",

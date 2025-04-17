@@ -1,0 +1,195 @@
+{
+  "event_id": 10001,
+  "event_type": "日常事件",
+  "event_name": "一个人的会议室",
+  "event_group_name": "职场相遇",
+  "valid_rounds": "1-7",
+  "duration_rounds": 1,
+  "icon_path": "resources/icons/meeting_room.png",
+  "background_path": "resources/backgrounds/meeting_room.jpg",
+  "audio_path": "resources/audio/office_talk.mp3",
+  "tags": ["职场", "密会", "机遇"],
+  
+  "prerequisite_conditions": {
+    "required_attributes": {
+      "social": 5,
+      "resistance": 3
+    },
+    "required_items": [],
+    "excluded_events": [],
+    "day_type": "workday",
+    "round_range": [1, 7],
+    "chance": 0.3
+  },
+  
+  "card_slots": [
+    {
+      "slot_id": 1,
+      "slot_description": "温和策略",
+      "allowed_card_types": ["密会", "投资"],
+      "branch_id": 1,
+      "success_condition": {
+        "social": 8
+      },
+      "failure_condition": {
+        "social": 4
+      },
+      "success_results": {
+        "attributes": {
+          "social": 2,
+          "power": 1
+        },
+        "relationship": {
+          "boss": 2
+        },
+        "items": [201]
+      },
+      "failure_results": {
+        "relationship": {
+          "boss": -1
+        },
+        "status": ["embarrassed"]
+      },
+      "next_event_success": 10002,
+      "next_event_failure": 10003,
+      "effect_modifier": {
+        "social": 1.2,
+        "power": 1.0
+      },
+      "required_for_completion": false
+    },
+    {
+      "slot_id": 2,
+      "slot_description": "强硬策略",
+      "allowed_card_types": ["淘汰", "挑战"],
+      "branch_id": 2,
+      "success_condition": {
+        "power": 8
+      },
+      "failure_condition": {
+        "power": 4
+      },
+      "success_results": {
+        "attributes": {
+          "power": 2,
+          "reputation": -1
+        },
+        "relationship": {
+          "boss": -1,
+          "coworkers": -1
+        }
+      },
+      "failure_results": {
+        "attributes": {
+          "reputation": -2
+        },
+        "status": ["company_tension"],
+        "relationship": {
+          "boss": -3
+        }
+      },
+      "next_event_success": 10004,
+      "next_event_failure": 10005,
+      "effect_modifier": {
+        "power": 1.5,
+        "social": 0.8
+      },
+      "required_for_completion": false
+    }
+  ],
+  
+  "non_card_options": [
+    {
+      "option_id": 1,
+      "option_text": "装作路过",
+      "branch_id": 3,
+      "success_condition": {
+        "execution": 6
+      },
+      "success_results": {
+        "attributes": {
+          "execution": 1
+        }
+      },
+      "failure_results": {},
+      "next_event_success": null,
+      "next_event_failure": null
+    }
+  ],
+  
+  "narrative_branches": [
+    {
+      "branch_id": 1,
+      "texts": [
+        "你选择了密会或投资策略",
+        "凭借社交和财务资源建立关系",
+        "这种温和的方法赢得了老板的好感"
+      ],
+      "character_reactions": {
+        "boss": {
+          "attitude": 1,
+          "dialogue": "你很懂得如何维系关系，我欣赏这一点。"
+        }
+      },
+      "scene_changes": "会议室的气氛变得轻松友好"
+    },
+    {
+      "branch_id": 2,
+      "texts": [
+        "你选择了淘汰或挑战策略",
+        "这是一种更加强势的做法",
+        "你直接挑战了现状或试图排除竞争对手"
+      ],
+      "character_reactions": {
+        "boss": {
+          "attitude": 0,
+          "dialogue": "有野心，但要小心行事。"
+        }
+      },
+      "scene_changes": "会议室的气氛变得紧张而充满竞争性"
+    },
+    {
+      "branch_id": 3,
+      "texts": [
+        "你装作不经意地路过会议室",
+        "老板只是瞥了你一眼，没有多说什么"
+      ],
+      "character_reactions": {
+        "boss": {
+          "attitude": 0,
+          "dialogue": "嗯？有事吗？"
+        }
+      },
+      "scene_changes": "你迅速离开了会议室，老板继续专注于自己的工作"
+    }
+  ],
+  
+  "is_repeatable": false,
+  "max_occurrences": 1,
+  "cooldown": 0,
+  "priority": 50,
+  "is_interrupt": false,
+  "time_limit": 30,
+  
+  "script_path": "scripts/events/meeting_room.js",
+  "custom_ui_prefab": "prefabs/events/card_strategy_event.prefab",
+  "save_flags": "boss_relationship,office_politics",
+  "debug_mode": false,
+  "version": "1.0.0",
+  
+  "text_key": "event_meeting_room",
+  "locale_data": {
+    "zh": {
+      "title": "一个人的会议室",
+      "description": "你偶然发现老板独自一人在会议室里。这可能是一个靠近他的机会，也可能是危险的。",
+      "outcome_success": "你成功地与老板建立了更紧密的联系。",
+      "outcome_failure": "你的尝试似乎适得其反，老板对你的印象变差了。"
+    },
+    "en": {
+      "title": "Meeting Room Encounter",
+      "description": "You stumble upon your boss alone in the meeting room. This could be an opportunity to get closer, or it could be dangerous.",
+      "outcome_success": "You successfully established a closer connection with your boss.",
+      "outcome_failure": "Your attempt backfired, and your boss's impression of you worsened."
+    }
+  }
+} 
