@@ -1,0 +1,17 @@
+# 忽略ffmpeg文件夹
+ffmpeg/
+
+# 忽略大型媒体文件
+*.mp4
+*.ogv
+*.zip
+
+# 忽略常见的系统文件
+.DS_Store
+Thumbs.db
+
+# 忽略编辑器配置文件
+.vscode/
+.idea/
+*.swp
+*.swo 
