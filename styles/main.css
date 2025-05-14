@@ -1,0 +1,772 @@
+/* 全局变量定义 */
+:root {
+    /* 主色调 - 新海诚风格的高饱和色彩 */
+    --primary-blue: #4a90e2;
+    --primary-gold: #f8d56c;
+    --primary-orange: #ff9e2c;
+    --primary-teal: #56c4c5;
+    
+    /* 灰度色阶 */
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    
+    /* 功能色彩 */
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    
+    /* 阴影和光效 */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --glow-blue: 0 0 15px rgba(74, 144, 226, 0.6);
+    --glow-gold: 0 0 15px rgba(248, 213, 108, 0.6);
+    
+    /* 字体 */
+    --font-sans: 'Noto Sans SC', sans-serif;
+    --font-serif: 'Noto Serif SC', serif;
+    
+    /* 尺寸 */
+    --header-height: 60px;
+    --footer-height: 180px;
+}
+
+/* 基础重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--gray-800);
+    background-color: #000;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: var(--font-sans);
+}
+
+/* 游戏容器 */
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, #182848 0%, #4b6cb7 100%);
+    overflow: hidden;
+}
+
+/* 顶部信息栏 */
+.top-info-bar {
+    height: var(--header-height);
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    color: var(--gray-100);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+
+.progress-info {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons button {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: 4px;
+    padding: 6px 12px;
+    transition: all 0.3s ease;
+}
+
+.action-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: var(--glow-blue);
+}
+
+/* 主内容区域 */
+.main-content {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-image: url('https://images.unsplash.com/photo-1470790376778-a9fbc86d70e2?q=80&w=1920&auto=format');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 添加一个渐变叠加层模拟新海诚风格的光效 */
+.main-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 158, 44, 0.3) 0%,
+        rgba(74, 144, 226, 0.3) 100%
+    );
+    pointer-events: none;
+}
+
+.desktop-area {
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-md);
+    height: calc(100% - 40px);
+    overflow: auto;
+    z-index: 1;
+}
+
+.section-title {
+    color: white;
+    margin-bottom: 20px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 24px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: inline-block;
+}
+
+/* 在标题下方添加一个装饰线，模拟光效 */
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-gold), transparent);
+}
+
+.desktop-content {
+    display: flex;
+    gap: 30px;
+    height: calc(100% - 60px);
+}
+
+.daily-events, .random-events {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-content: flex-start;
+}
+
+/* 文件夹样式 */
+.event-folder {
+    width: 120px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.event-folder:hover {
+    transform: translateY(-5px);
+}
+
+.folder-icon {
+    width: 80px;
+    height: 60px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/716/716784.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+}
+
+.event-folder:hover .folder-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(248, 213, 108, 0.6));
+}
+
+.folder-label {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 随机事件气泡样式 */
+.event-bubble {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.event-bubble:hover {
+    transform: translateY(-5px);
+}
+
+.bubble-icon {
+    width: 60px;
+    height: 60px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/1246/1246332.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+}
+
+.event-bubble:hover .bubble-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(74, 144, 226, 0.6));
+}
+
+.bubble-label {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 底部桌面区域 */
+.desk-area {
+    height: var(--footer-height);
+    background-color: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.cards-section {
+    flex: 1;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    overflow-x: auto;
+    padding: 0 10px;
+}
+
+/* 卡牌样式将在JS中动态添加 */
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.card-btn {
+    width: 120px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    transition: all 0.3s ease;
+    background: rgba(74, 144, 226, 0.2);
+    border: 1px solid rgba(74, 144, 226, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-btn::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.card-btn:hover {
+    background: rgba(74, 144, 226, 0.4);
+    box-shadow: var(--glow-blue);
+}
+
+.card-btn:hover::before {
+    transform: rotate(45deg) translateY(-100px);
+}
+
+.character-btn {
+    background: rgba(86, 196, 197, 0.2);
+    border: 1px solid rgba(86, 196, 197, 0.4);
+}
+
+.character-btn:hover {
+    background: rgba(86, 196, 197, 0.4);
+    box-shadow: 0 0 15px rgba(86, 196, 197, 0.6);
+}
+
+.privilege-btn {
+    background: rgba(248, 213, 108, 0.2);
+    border: 1px solid rgba(248, 213, 108, 0.4);
+}
+
+.privilege-btn:hover {
+    background: rgba(248, 213, 108, 0.4);
+    box-shadow: 0 0 15px rgba(248, 213, 108, 0.6);
+}
+
+.tool-btn {
+    background: rgba(255, 158, 44, 0.2);
+    border: 1px solid rgba(255, 158, 44, 0.4);
+}
+
+.tool-btn:hover {
+    background: rgba(255, 158, 44, 0.4);
+    box-shadow: 0 0 15px rgba(255, 158, 44, 0.6);
+}
+
+.end-day-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.end-day-btn {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(135deg, #4a90e2 0%, #56c4c5 100%);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.end-day-btn::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.end-day-btn:hover {
+    box-shadow: var(--glow-blue);
+    transform: translateY(-2px);
+}
+
+.end-day-btn:hover::before {
+    transform: rotate(45deg) translateY(-100px);
+}
+
+/* 事件弹窗 */
+.event-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.event-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    width: 500px;
+    max-width: 90%;
+    background-color: rgba(30, 30, 30, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.event-modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 15px 20px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-teal));
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.close-modal {
+    background: none;
+    color: white;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.modal-body {
+    padding: 20px;
+    color: white;
+}
+
+.event-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.event-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-btn {
+    padding: 12px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.choice-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--glow-blue);
+}
+
+/* 卡牌详情弹窗 */
+.card-detail-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.card-detail-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.card-detail-content {
+    width: 360px;
+    max-width: 90%;
+    background-color: rgba(30, 30, 30, 0.9);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.card-detail-modal.active .card-detail-content {
+    transform: translateY(0);
+}
+
+.card-detail-header {
+    padding: 15px 20px;
+    background: linear-gradient(90deg, var(--primary-gold), var(--primary-orange));
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.close-card-detail {
+    background: none;
+    color: white;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.card-detail-body {
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-image {
+    width: 200px;
+    height: 280px;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background-image: url('https://img.freepik.com/free-vector/abstract-elegant-gold-card-design_1017-20801.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.use-card-btn, .cancel-card-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.use-card-btn {
+    background: linear-gradient(135deg, var(--primary-gold), var(--primary-orange));
+    color: white;
+}
+
+.use-card-btn:hover {
+    box-shadow: var(--glow-gold);
+    transform: translateY(-2px);
+}
+
+.cancel-card-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.cancel-card-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 媒体查询 */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 50px;
+        --footer-height: 150px;
+    }
+    
+    .progress-info {
+        font-size: 14px;
+    }
+    
+    .desktop-content {
+        flex-direction: column;
+    }
+    
+    .card-btn {
+        width: 100px;
+    }
+}
+
+/* 卡牌样式 */
+.card {
+    width: 90px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-md);
+}
+
+.character-card {
+    background: linear-gradient(135deg, rgba(86, 196, 197, 0.3), rgba(74, 144, 226, 0.3));
+    border: 1px solid rgba(86, 196, 197, 0.4);
+}
+
+.character-card:hover {
+    box-shadow: 0 0 15px rgba(86, 196, 197, 0.6);
+}
+
+.privilege-card {
+    background: linear-gradient(135deg, rgba(248, 213, 108, 0.3), rgba(255, 158, 44, 0.3));
+    border: 1px solid rgba(248, 213, 108, 0.4);
+}
+
+.privilege-card:hover {
+    box-shadow: 0 0 15px rgba(248, 213, 108, 0.6);
+}
+
+.tool-card {
+    background: linear-gradient(135deg, rgba(255, 158, 44, 0.3), rgba(220, 53, 69, 0.3));
+    border: 1px solid rgba(255, 158, 44, 0.4);
+}
+
+.tool-card:hover {
+    box-shadow: 0 0 15px rgba(255, 158, 44, 0.6);
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-name {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 光效装饰 */
+.card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    animation: cardGlow 8s infinite linear;
+}
+
+@keyframes cardGlow {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* 模拟新海诚风格的光效动画 */
+.light-effect {
+    position: absolute;
+    pointer-events: none;
+}
+
+.sun-ray {
+    position: fixed;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 158, 44, 0.3) 0%,
+        rgba(255, 158, 44, 0) 70%
+    );
+    opacity: 0.6;
+    z-index: 5;
+    pointer-events: none;
+} 

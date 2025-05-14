@@ -1,0 +1,229 @@
+[
+  {
+    "event_id": 10001,
+    "slot_id": 1,
+    "slot_type": "card_slot",
+    "slot_description": "温和策略",
+    "allowed_card_types": ["密会", "投资"],
+    "branch_id": 1,
+    "controls_branch": true,
+    "attribute_contributions": {
+      "enabled": true,
+      "attributes": ["social", "power"]
+    },
+    "check_mechanism": {
+      "type": "random",
+      "attribute_source": "card"
+    },
+    "success_condition_json": null,
+    "success_results": {
+      "attributes": {
+        "social": 2,
+        "power": 1
+      },
+      "relationship": {
+        "boss": 2
+      },
+      "items": [201]
+    },
+    "failure_results": {
+      "relationship": {
+        "boss": -1
+      },
+      "status": ["embarrassed"]
+    },
+    "next_event_success": 10002,
+    "next_event_delay_success": 1,
+    "next_event_failure": 10003,
+    "next_event_delay_failure": 0,
+    "effect_modifier": {
+      "social": 1.2,
+      "power": 1.0
+    },
+    "required_for_completion": false,
+    "option_text_json": null
+  },
+  {
+    "event_id": 10001,
+    "slot_id": 2,
+    "slot_type": "card_slot",
+    "slot_description": "强硬策略",
+    "allowed_card_types": ["淘汰", "挑战"],
+    "branch_id": 2,
+    "controls_branch": true,
+    "attribute_contributions": {
+      "enabled": true,
+      "attributes": ["power", "reputation"]
+    },
+    "check_mechanism": {
+      "type": "random",
+      "attribute_source": "card",
+      "base_success_rate": 0.6,
+      "card_attribute_influence": 1.8
+    },
+    "success_condition_json": null,
+    "success_results": {
+      "attributes": {
+        "power": 2,
+        "reputation": -1
+      },
+      "relationship": {
+        "boss": -1,
+        "coworkers": -1
+      }
+    },
+    "failure_results": {
+      "attributes": {
+        "reputation": -2
+      },
+      "status": ["company_tension"],
+      "relationship": {
+        "boss": -3
+      }
+    },
+    "next_event_success": 10004,
+    "next_event_delay_success": 1,
+    "next_event_failure": 10005,
+    "next_event_delay_failure": 0,
+    "required_for_completion": false,
+    "option_text_json": null
+  },
+  {
+    "event_id": 10001,
+    "slot_id": 3,
+    "slot_type": "non_card_option",
+    "slot_description": "装作路过",
+    "allowed_card_types": null,
+    "branch_id": 3,
+    "controls_branch": true,
+    "attribute_contributions": {
+      "enabled": false
+    },
+    "check_mechanism": {
+      "type": "fixed",
+      "attribute_source": "player"
+    },
+    "success_condition_json": {
+      "execution": 6
+    },
+    "success_results": {
+      "attributes": {
+        "execution": 1
+      }
+    },
+    "failure_results": {},
+    "next_event_success": null,
+    "next_event_delay_success": 0,
+    "next_event_failure": null,
+    "next_event_delay_failure": 0,
+    "effect_modifier": null,
+    "required_for_completion": false,
+    "option_text_json": {
+      "zh": "装作路过",
+      "en": "Walk by casually"
+    }
+  },
+  {
+    "event_id": 10001,
+    "slot_id": 4,
+    "slot_type": "card_slot",
+    "slot_description": "情报支持",
+    "allowed_card_types": ["情报", "知识"],
+    "branch_id": null,
+    "controls_branch": false,
+    "attribute_contributions": {
+      "enabled": true,
+      "attributes": ["social", "knowledge"]
+    },
+    "provides_redraw": true,
+    "redraw_attribute": "redraw_count"
+  },
+  {
+    "event_id": 10002,
+    "slot_id": 1,
+    "slot_type": "card_slot",
+    "slot_description": "积极回应",
+    "allowed_card_types": ["社交", "领导力"],
+    "branch_id": 1,
+    "controls_branch": true,
+    "attribute_contributions": {
+      "enabled": true,
+      "attributes": ["social", "power"]
+    },
+    "check_mechanism": {
+      "type": "random",
+      "attribute_source": "card",
+      "base_success_rate": 0.8,
+      "card_attribute_influence": 1.2
+    },
+    "success_condition_json": null,
+    "success_results": {
+      "attributes": {
+        "social": 1,
+        "power": 2,
+        "reputation": 3
+      },
+      "relationship": {
+        "boss": 3
+      }
+    },
+    "failure_results": {
+      "attributes": {}
+    },
+    "next_event_success": null,
+    "next_event_delay_success": 0,
+    "next_event_failure": null,
+    "next_event_delay_failure": 0,
+    "effect_modifier": {
+      "social": 1.1,
+      "power": 1.1
+    },
+    "required_for_completion": true,
+    "option_text_json": null
+  },
+  {
+    "event_id": 10003,
+    "slot_id": 1,
+    "slot_type": "card_slot",
+    "slot_description": "化解尴尬",
+    "allowed_card_types": ["社交", "沟通"],
+    "branch_id": 1,
+    "controls_branch": true,
+    "attribute_contributions": {
+      "enabled": true,
+      "attributes": ["social", "resilience"]
+    },
+    "check_mechanism": {
+      "type": "random",
+      "attribute_source": "card",
+      "base_success_rate": 0.5,
+      "card_attribute_influence": 2.0
+    },
+    "success_condition_json": null,
+    "success_results": {
+      "attributes": {
+        "social": 1,
+        "resilience": 1
+      },
+      "relationship": {
+        "boss": 1
+      },
+      "status": ["relieved"]
+    },
+    "failure_results": {
+      "relationship": {
+        "boss": -1
+      },
+      "status": ["uncomfortable"]
+    },
+    "next_event_success": null,
+    "next_event_delay_success": 0,
+    "next_event_failure": null,
+    "next_event_delay_failure": 0,
+    "effect_modifier": {
+      "social": 1.3
+    },
+    "required_for_completion": true,
+    "option_text_json": null
+  }
+] 

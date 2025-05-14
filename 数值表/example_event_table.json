@@ -1,0 +1,38 @@
+[
+  {
+    "event_id": 10001,
+    "event_type": "日常事件",
+    "event_name": "一个人的会议室",
+    "event_group_name": "职场相遇",
+    "valid_rounds": "1-7",
+    "duration_rounds": 1,
+    "icon_path": "resources/icons/meeting_room.png",
+    "background_path": "resources/backgrounds/meeting_room.jpg",
+    "audio_path": "resources/audio/office_talk.mp3",
+    "prerequisite_conditions": {
+      "required_attributes": {
+        "social": 5,
+        "resistance": 3
+      },
+      "required_items": [],
+      "excluded_events": [],
+      "day_type": "workday",
+      "round_range": [1, 7],
+      "chance": 0.3
+    },
+    "max_occurrences": 1,
+    "cooldown": 0,
+    "global_check": { 
+      "check_mode": "single_attribute",
+      "single_attribute_check": {
+        "attribute_name": "social",
+        "threshold": 2,
+        "success_required": 1
+      }
+    },
+    
+    "attribute_aggregation": {
+      "method": "sum_all_slots"
+    }
+  }
+]

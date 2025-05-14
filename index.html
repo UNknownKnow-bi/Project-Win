@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>职场苏丹 - 游戏界面</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 顶部信息栏 -->
+        <header class="top-info-bar">
+            <div class="progress-info">本回合是4月第一个工作周，到月底还有6个回合，剩余3个工作周和3个周末</div>
+            <div class="action-buttons">
+                <button class="setting-btn">设置</button>
+                <button class="help-btn">帮助</button>
+            </div>
+        </header>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 电脑桌面区域 -->
+            <section class="desktop-area">
+                <h2 class="section-title">本周工作 To Do</h2>
+                
+                <div class="desktop-content">
+                    <!-- 日常事件区域 -->
+                    <div class="daily-events">
+                        <div class="event-folder" data-event-type="daily">
+                            <div class="folder-icon"></div>
+                            <div class="folder-label">日常事件</div>
+                        </div>
+                        <div class="event-folder" data-event-type="daily">
+                            <div class="folder-icon"></div>
+                            <div class="folder-label">日常事件</div>
+                        </div>
+                        <div class="event-folder" data-event-type="daily">
+                            <div class="folder-icon"></div>
+                            <div class="folder-label">日常事件</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 随机事件区域 -->
+                    <div class="random-events">
+                        <div class="event-bubble" data-event-type="random">
+                            <div class="bubble-icon"></div>
+                            <div class="bubble-label">随机事件</div>
+                        </div>
+                        <div class="event-bubble" data-event-type="random">
+                            <div class="bubble-icon"></div>
+                            <div class="bubble-label">随机事件</div>
+                        </div>
+                        <div class="event-bubble" data-event-type="random">
+                            <div class="bubble-icon"></div>
+                            <div class="bubble-label">随机事件</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 底部桌面区域 -->
+        <footer class="desk-area">
+            <div class="cards-section">
+                <!-- 卡牌区域将由JS动态填充 -->
+            </div>
+            
+            <div class="action-buttons">
+                <button class="card-btn character-btn">角色卡</button>
+                <button class="card-btn privilege-btn">特权卡</button>
+                <button class="card-btn tool-btn">道具卡</button>
+            </div>
+            
+            <div class="end-day-section">
+                <button class="end-day-btn">工作日结算</button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 事件弹窗模板 -->
+    <div class="event-modal" id="eventModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">事件标题</h3>
+                <button class="close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="event-description">事件描述内容将在这里显示...</p>
+                <div class="event-choices">
+                    <button class="choice-btn">选项1</button>
+                    <button class="choice-btn">选项2</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡牌详情弹窗 -->
+    <div class="card-detail-modal" id="cardDetailModal">
+        <div class="card-detail-content">
+            <div class="card-detail-header">
+                <h3 class="card-title">卡牌名称</h3>
+                <button class="close-card-detail">×</button>
+            </div>
+            <div class="card-detail-body">
+                <div class="card-image"></div>
+                <p class="card-description">卡牌描述内容将在这里显示...</p>
+                <div class="card-actions">
+                    <button class="use-card-btn">使用卡牌</button>
+                    <button class="cancel-card-btn">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html> 

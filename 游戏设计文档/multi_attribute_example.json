@@ -1,0 +1,153 @@
+{
+  "event_table": {
+    "event_id": 30001,
+    "event_type": "日常事件",
+    "event_name": "项目答辩",
+    "event_group_name": "职场挑战",
+    "valid_rounds": "5-15",
+    "duration_rounds": 1,
+    "icon_path": "resources/icons/presentation.png",
+    "background_path": "resources/backgrounds/meeting_room.jpg",
+    "audio_path": "resources/audio/presentation.mp3",
+    "prerequisite_conditions": {
+      "required_attributes": {
+        "knowledge": 5,
+        "social": 3
+      },
+      "day_type": "workday",
+      "chance": 0.4
+    },
+    "global_check": {
+      "check_mode": "multi_attribute",
+      "multi_attribute_check": {
+        "attributes": ["social", "knowledge", "execution"],
+        "threshold": 6,
+        "success_required": 1
+      }
+    },
+    "attribute_aggregation": {
+      "method": "sum_all_slots"
+    }
+  },
+  
+  "slot_table": [
+    {
+      "event_id": 30001,
+      "slot_id": 1,
+      "slot_type": "card_slot",
+      "slot_description": "技术路线",
+      "allowed_card_types": ["技术", "研究"],
+      "branch_id": 1,
+      "controls_branch": true,
+      "attribute_contributions": {
+        "enabled": true,
+        "attributes": ["knowledge", "execution"]
+      },
+      "success_results": {
+        "attributes": {
+          "knowledge": 2,
+          "reputation": 1
+        }
+      },
+      "failure_results": {
+        "attributes": {
+          "confidence": -1
+        }
+      },
+      "next_event_success": null,
+      "next_event_delay_success": 0,
+      "next_event_failure": null,
+      "next_event_delay_failure": 0
+    },
+    {
+      "event_id": 30001,
+      "slot_id": 2,
+      "slot_type": "card_slot",
+      "slot_description": "沟通策略",
+      "allowed_card_types": ["沟通", "领导"],
+      "branch_id": 2,
+      "controls_branch": true,
+      "attribute_contributions": {
+        "enabled": true,
+        "attributes": ["social", "influence"]
+      },
+      "success_results": {
+        "attributes": {
+          "social": 2,
+          "influence": 1
+        }
+      },
+      "failure_results": {
+        "attributes": {
+          "social": -1
+        }
+      },
+      "next_event_success": null,
+      "next_event_delay_success": 0,
+      "next_event_failure": null,
+      "next_event_delay_failure": 0
+    },
+    {
+      "event_id": 30001,
+      "slot_id": 3,
+      "slot_type": "card_slot",
+      "slot_description": "准备工作",
+      "allowed_card_types": ["准备", "研究"],
+      "branch_id": null,
+      "controls_branch": false,
+      "attribute_contributions": {
+        "enabled": true,
+        "attributes": ["knowledge", "execution", "social"]
+      },
+      "provides_redraw": true,
+      "redraw_attribute": "redraw_count"
+    }
+  ],
+  
+  "branch_table": [
+    {
+      "event_id": 30001,
+      "branch_id": 1,
+      "pre_check_text": [
+        "项目答辩会议上，你站在会议室前方，准备展示你们团队的技术方案。",
+        "投影仪上是你精心准备的PPT，但你注意到评审团中有几位技术专家正认真翻阅你提交的技术文档。",
+        "这是一次关键的技术展示，可能影响项目的未来走向。",
+        "你拿出了{card_name}，开始你的技术陈述。"
+      ],
+      "success_text": [
+        "你的技术讲解条理清晰，逻辑严密，既有理论深度又有实践考量。",
+        "当技术专家提出尖锐问题时，你冷静地分析了各种可能的技术路径及其优缺点。",
+        "你的专业知识和执行力获得了评审团的认可，他们对你的方案表示了满意。",
+        "这次答辩为项目争取到了更多的技术资源支持。"
+      ],
+      "failure_text": [
+        "你的技术讲解开始还算顺利，但在专业问题上出现了一些模糊点。",
+        "当技术专家追问细节时，你的回答显得有些底气不足。",
+        "评审团的反应逐渐变得谨慎，他们对你的方案提出了不少质疑。",
+        "这次答辩没有达到预期效果，项目可能需要重新调整技术路线。"
+      ]
+    },
+    {
+      "event_id": 30001,
+      "branch_id": 2,
+      "pre_check_text": [
+        "项目答辩会议上，你决定不过于深入技术细节，而是侧重展示项目的商业价值和愿景。",
+        "评审团中既有技术专家，也有来自市场和管理层的决策者。",
+        "这是一次平衡技术与商业的挑战，考验你的沟通能力和影响力。",
+        "你拿出了{card_name}，开始你的战略陈述。"
+      ],
+      "success_text": [
+        "你的陈述既有数据支撑，又有生动的案例，成功将复杂的技术转化为清晰的商业价值。",
+        "你巧妙地回应了各种角度的问题，在保持专业性的同时，让非技术背景的评委也能理解和认同。",
+        "会议结束时，你感受到了积极的氛围，评审团对项目的商业前景表示了兴趣。",
+        "这次答辩为项目赢得了更多的高层支持和资源倾斜。"
+      ],
+      "failure_text": [
+        "你的商业陈述虽然流畅，但在与技术连接的部分显得有些空泛。",
+        "技术专家的问题让你有些措手不及，而市场部分的论证又不够有力。",
+        "评审团的反应比较平淡，他们对项目的投入产出比表示担忧。",
+        "这次答辩后，项目可能面临更严格的监督和更紧的资源限制。"
+      ]
+    }
+  ]
+} 
